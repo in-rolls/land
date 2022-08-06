@@ -1,9 +1,14 @@
-### Land
+### Distribution of Land: Evidence From Bihar
 
-Using land records data from Bihar, we describe:
+The third largest state in India, with over 100M people, is also its poorest---the GDP ppp is a $630. Agriculture constitues 23% of the economy and hence land ownership is vital. Using the Bihar land records data---plot-level land records (N= 41.87 million plots or 12.13 individuals/accounts across 35,626 villages)---we describe the distribution of ownership of land, and how ownership varies by caste, religion, and gender.
 
-1. Distribution of number of plots by account_number
-2. Distribution of area owned by account_number
-3. What proportion of land is owned by different cases and religion (hindu/muslim) (compared to baseline distribution of ethnic groups in Bihar) 
-4. What proportion of land is registered in names of women? How does that vary by caste and religion (hindu/muslim).
-	- We use naampy for inferring gender from names. naampy uses the electoral roll data from bihar which includes data on the gender to estimate the proportion of people with a particular first name who are women/men. 
+In particular, we investigate distribution of a) the number of plots and b) total land area by `account number`. We also check how ownership of land is distributed across castes and religion and using [naampy](https://github.com/appeler/naampy), we infer what proportion of land is registered to women. 
+	
+### Scripts
+
+1. [Wrangle Data](scripts/01_wrangle_data.ipynb)
+2. [Plot Data](scripts/02_plot.ipynb)
+
+### Authors
+
+Aaditya Dar, Lucas Shen, and Gaurav Sood
