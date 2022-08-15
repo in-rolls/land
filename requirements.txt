@@ -1,0 +1,6 @@
+pandas
+pyjanitor
+matplotlib
+seaborn
+runpynb
+pranaam
