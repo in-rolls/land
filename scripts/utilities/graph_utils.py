@@ -52,7 +52,7 @@ def conbarplot(
     title=None,
     grouplab=None,
     groups=None,
-    annote_scaler=1.1,
+    annote_scaler=2,
     annotesize=11,
     titlesize=15,
     palette="cividis",
@@ -62,13 +62,14 @@ def conbarplot(
     Plot 'connected' barplot by group
     """
     # Barplot
-    ax = sns.barplot(x=x, y=y, data=data, ci=None, alpha=alpha, palette=palette,)
+    ax = sns.barplot(x=x, y=y, data=data, ci=None, alpha=alpha, palette=palette, order=groups)
 
     # Plot points
     sns.pointplot(
         x=x,
         y=y,
         data=data,
+        order=groups,
         ci=ci,
         capsize=None,
         join=False,
@@ -82,6 +83,7 @@ def conbarplot(
         x=x,
         y=y,
         data=data,
+        order=groups,
         ci=None,
         capsize=None,
         markers="",
@@ -98,13 +100,22 @@ def conbarplot(
         group2 = data.query(f"{grouplab}=='{groups[1]}'")[y].mean()
         group1 = data.query(f"{grouplab}=='{groups[0]}'")[y].mean()
         diff = group2 - group1
-        print(diff)
 
+        # Diff
         plt.text(
             x=1,
-            y=annote_scaler * group2,
-            s=f"Diff. = {diff:.1f}",
-            ha="center",
+            y=group2 + annote_scaler,
+            s=f"(Diff. = {diff:.1f})",
+            ha="left",
+            fontsize=annotesize,
+        )
+
+        # Group 1 mean
+        plt.text(
+            x=0,
+            y=group1 + annote_scaler,
+            s=f"{group1:.1f}",
+            ha="left",
             fontsize=annotesize,
         )
 
