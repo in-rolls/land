@@ -1,0 +1,112 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[linkcolor=blue,
+colorlinks=true,
+urlcolor=blue,
+pdfstartview={XYZ null null 1.00},
+pdfpagemode=UseNone,
+citecolor={bluish},
+pdftitle={unlanded}
+]{hyperref}
+
+%========================================================
+% Fonts and links and math
+%========================================================
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[bitstream-charter]{mathdesign}
+
+\usepackage[nameinlink, capitalize, noabbrev]{cleveref}
+
+\usepackage[12pt]{moresize}
+
+\usepackage{setspace}% for 'singlespacing, onehalfspacing, and doublespacing
+
+%========================================================
+% Figures
+%========================================================
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+
+\usepackage[hang, font=normal,skip=0pt, labelfont={bf}]{caption}
+
+\usepackage[skip        =0pt, 
+size        =footnotesize,
+labelformat =simple]
+{subcaption}
+
+%========================================================
+% Tables
+%========================================================
+\usepackage{booktabs}
+\usepackage{adjustbox}
+
+\DeclareCaptionLabelSeparator{bar}{---}
+\captionsetup[table]{
+	skip=0pt,
+	labelsep=bar,
+	justification=centering,
+	singlelinecheck=false,
+	textfont=it,
+}
+
+\usepackage{dcolumn}
+%========================================================
+% Other Floats
+%========================================================
+\usepackage{float}
+\usepackage{placeins} %for \FloatBarrier
+
+%========================================================
+% Biblio
+%========================================================
+\usepackage{natbib}
+
+\usepackage{doi} % auto hyperlink DOIs in references
+
+
+%========================================================
+% Meta
+%========================================================
+\usepackage[en-US]{datetime2}
+\DTMlangsetup{showdayofmonth=false}
+
+\newcommand{\mstitle}{Unlanded: Distribution of Land in Bihar}
+\hypersetup{
+	pdfinfo={
+		Author={},
+		Title={\mstitle{}},
+		Subject={Manuscript},
+		Institutional Affiliation={},
+		Created={\today}
+	}
+}
+\title{\mstitle{}}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\doublespacing
+% -----------------------------------------------
+% 	ABSTRACT
+% -----------------------------------------------
+\begin{abstract}
+	%\noindent  \input{./sections/abstract.tex}
+\end{abstract}
+\vspace{1cm}
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+\newpage
+
+% -----------------------------------------------
+% 	BODY
+% -----------------------------------------------
+\input{text/intro.tex}
+\newpage
+\input{text/data.tex}
+\newpage
+\input{text/land_dist_bihar.tex}
+
+
+\end{document}
