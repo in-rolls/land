@@ -2,13 +2,25 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import seaborn as sns
+import pandas as pd
 
 sns.set_theme(
-    context="notebook", font_scale=1.05, style="whitegrid"
+    context="notebook",
+    font_scale=1.05,
+    style="whitegrid",
 )  #  Darkgrid Whitegrid Dark White Ticks
 
 
-def dotplot(data, x="count", y="nplots", xticks=None, title=None, savepath=None):
+def dotplot(
+    data,
+    x="count",
+    y="nplots",
+    xticks=None,
+    labelsize=10,
+    xlabel=None,
+    title=None,
+    savepath=None,
+):
     nrows = len(data)
     _, ax = plt.subplots(figsize=(9, 9))
     sns.stripplot(x=x, y=y, data=data, orient="h", color="darkslategray", ax=ax)
@@ -16,10 +28,12 @@ def dotplot(data, x="count", y="nplots", xticks=None, title=None, savepath=None)
     sns.despine(left=True)
     if xticks:
         plt.xticks(xticks)
-    plt.xlabel("Accounts", fontweight="bold")
+    plt.xlabel(xlabel, fontweight="bold")
     plt.ylabel("")
-    ax.get_xaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ",")))
-    ax.tick_params(axis="y", labelsize=10)
+    ax.get_xaxis().set_major_formatter(
+        ticker.FuncFormatter(lambda x, p: format(int(x), ","))
+    )
+    ax.tick_params(axis="y", labelsize=labelsize)
 
     def draw_alt_row_colors(ax, rowspan=5, color="0.5", alpha=0.1):
         yticks = ax.get_yticks()
@@ -62,7 +76,9 @@ def conbarplot(
     Plot 'connected' barplot by group
     """
     # Barplot
-    ax = sns.barplot(x=x, y=y, data=data, ci=None, alpha=alpha, palette=palette, order=groups)
+    ax = sns.barplot(
+        x=x, y=y, data=data, ci=None, alpha=alpha, palette=palette, order=groups
+    )
 
     # Plot points
     sns.pointplot(
@@ -134,3 +150,15 @@ def conbarplot(
 def save_mpl_fig(savepath):
     plt.savefig(f"{savepath}.pdf", dpi=None, bbox_inches="tight", pad_inches=0)
     plt.savefig(f"{savepath}.png", dpi=120, bbox_inches="tight", pad_inches=0)
+
+
+def pandas_to_tex(df, texfile):
+    if texfile.split(".")[-1] != ".tex":
+        texfile += ".tex"
+        
+    tex_table = df.to_latex(index=False, header=False)
+    tex_table_fragment = "\n".join(tex_table.split("\n")[2:-3])
+    
+    with open(texfile, "w") as tf:
+        tf.write(tex_table_fragment)
+    return None
