@@ -28,7 +28,7 @@ pdftitle={unlanded}
 \graphicspath{{../figures/}}
 
 \usepackage[hang, font=normal,skip=0pt, labelfont={bf}]{caption}
-
+  
 \usepackage[skip        =0pt, 
 size        =footnotesize,
 labelformat =simple]
@@ -55,6 +55,8 @@ labelformat =simple]
 %========================================================
 \usepackage{float}
 \usepackage{placeins} %for \FloatBarrier
+\usepackage{sidecap} % for SCfigure and SCtable
+
 
 %========================================================
 % Biblio
@@ -63,6 +65,18 @@ labelformat =simple]
 
 \usepackage{doi} % auto hyperlink DOIs in references
 
+%========================================================
+% Other
+%========================================================
+% https://tex.stackexchange.com/questions/611786/misplaced-noalign-because-input-before-booktabs-rule
+% I was getting Misplaced \noalign. \bottomrule on my laptop
+% but not on my desktop...
+\ExplSyntaxOn
+\cs_new:Npn \expandableinput #1
+{ \use:c { @@input } { \file_full_name:n {#1} } }
+\AddToHook{env/tabular/begin}
+{ \cs_set_eq:NN \input \expandableinput }
+\ExplSyntaxOff
 
 %========================================================
 % Meta
