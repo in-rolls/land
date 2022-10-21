@@ -5,7 +5,7 @@ colorlinks=true,
 urlcolor=blue,
 pdfstartview={XYZ null null 1.00},
 pdfpagemode=UseNone,
-citecolor={bluish},
+citecolor={black},
 pdftitle={unlanded}
 ]{hyperref}
 
@@ -26,13 +26,46 @@ pdftitle={unlanded}
 %========================================================
 \usepackage{graphicx}
 \graphicspath{{../figures/}}
-
+\iffalse
 \usepackage[hang, font=normal,skip=0pt, labelfont={bf}]{caption}
-  
+
 \usepackage[skip        =0pt, 
 size        =footnotesize,
 labelformat =simple]
 {subcaption}
+\fi
+
+\usepackage[
+skip            =0pt,
+labelfont       =bf, 
+font            =footnotesize,
+textfont        =footnotesize,
+figurename      =Figure,
+justification   =justified,
+singlelinecheck =false,
+labelsep        =period
+]{caption}  
+
+\usepackage[
+skip        =0pt, 
+size        =footnotesize,
+textfont    =scriptsize,
+justification=centering
+]{subcaption}
+
+
+
+
+\usepackage{ragged2e}
+
+% Custom footnote for figures and tables
+%\newcommand{\myfigtabnote}{\caption*{1} \scriptsize \emph{Notes}--- }
+\newcommand{\myfigtabnote}[1][\caption*]{
+	\footnotesize 
+	\justifying 
+	\noindent 
+	\emph{Notes}---}
+
 
 %========================================================
 % Tables
@@ -43,13 +76,16 @@ labelformat =simple]
 \DeclareCaptionLabelSeparator{bar}{---}
 \captionsetup[table]{
 	skip=0pt,
-	labelsep=bar,
+	labelsep=period,
 	justification=centering,
 	singlelinecheck=false,
 	textfont=it,
 }
 
 \usepackage{dcolumn}
+
+\usepackage{csvsimple}
+
 %========================================================
 % Other Floats
 %========================================================
@@ -61,8 +97,8 @@ labelformat =simple]
 %========================================================
 % Biblio
 %========================================================
-\usepackage{natbib}
-
+\usepackage[authoryear]{natbib}
+\setcitestyle{aysep={}} 
 \usepackage{doi} % auto hyperlink DOIs in references
 
 %========================================================
@@ -71,12 +107,15 @@ labelformat =simple]
 % https://tex.stackexchange.com/questions/611786/misplaced-noalign-because-input-before-booktabs-rule
 % I was getting Misplaced \noalign. \bottomrule on my laptop
 % but not on my desktop...
+% Comment out for older LaTeX versions
+\iffalse
 \ExplSyntaxOn
 \cs_new:Npn \expandableinput #1
 { \use:c { @@input } { \file_full_name:n {#1} } }
 \AddToHook{env/tabular/begin}
 { \cs_set_eq:NN \input \expandableinput }
 \ExplSyntaxOff
+\fi
 
 %========================================================
 % Meta
@@ -122,5 +161,12 @@ labelformat =simple]
 \newpage
 \input{text/land_dist_bihar.tex}
 
+% -----------------------------------------------
+% 	REFERENCES
+% -----------------------------------------------
+\FloatBarrier
+\singlespacing
+\bibliographystyle{chicago}
+\bibliography{references.bib}
 
 \end{document}

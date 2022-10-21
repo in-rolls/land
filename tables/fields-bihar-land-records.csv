@@ -1,0 +1,25 @@
+Field,Description
+name of ryot,Name of land plot owner (ryot or raiyat)
+name of father,Name of owner's father
+residence,
+caste,
+revenue unit,
+district,
+divison,
+mouza,
+account no,Owner's unique account number
+link,Original link of land record
+1,
+2,
+3,
+4,
+5,
+6,Land plot area in acre
+7,Land plot area in decimal
+8,Land plot area in hectare
+9,
+10,
+11,
+12,
+13,
+14,

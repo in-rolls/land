@@ -14,24 +14,21 @@
 		\includegraphics[height=16\baselineskip,width=\textwidth]{number_plots_per_accountholder_ecdf.pdf}
 		\caption{Empirical CDF}
 	\end{subfigure}
-	\caption{Land plots per account holder}
-	\caption*{\footnotesize \emph{Notes}---Number of land plots per account holder in the Bihar land registry. Both subfigures have the 99th percentile is trimmed for visual articulation. See \cref{tab:percentiles_plots_per_accountholder} for the percentile values, including the 99th percentile.
-	}
+	\caption{Land plots per account holder. Number of land plots per account holder in the Bihar land registry. Both subfigures have the 99th percentile is trimmed for visual articulation. See \cref{tab:percentiles_plots_per_accountholder} for the percentile values, including the 99th percentile.}
 	\label{fig:number_plots_per_accountholder}
 \end{figure}
 
 
-\begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt} \small \centering
+\begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
 \begin{tabular}{@{\hspace{0\tabcolsep}}c*{2}{D{.}{.}{-1}}@{\hspace{0\tabcolsep}}}
 %\begin{tabular}{@{\hspace{0\tabcolsep}}rr@{\hspace{0\tabcolsep}}}
 	\toprule
-	\multicolumn{1}{c}{Percentiles}&\multicolumn{1}{c}{Plots}\\
+	\multicolumn{1}{c}{\textbf{Percentiles}}&\multicolumn{1}{c}{\textbf{Plots}}\\
 	\midrule
 		\input{../tables/percentiles_plots_per_accountholder.tex}
 	\bottomrule
 \end{tabular}
-\caption{Number of plots owned per account holder, by percentiles. \\
-\emph{Notes}---See \cref{fig:number_plots_per_accountholder} for the distributions up to the 99th percentile (32 land plots per account holder).
+\caption{Number of plots owned per account holder, by percentiles. See \cref{fig:number_plots_per_accountholder} for the distributions up to the 99th percentile (32 land plots per account holder).
 }
 \label{tab:percentiles_plots_per_accountholder}
 \end{SCtable}
