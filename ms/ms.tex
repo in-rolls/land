@@ -26,14 +26,6 @@ pdftitle={unlanded}
 %========================================================
 \usepackage{graphicx}
 \graphicspath{{../figures/}}
-\iffalse
-\usepackage[hang, font=normal,skip=0pt, labelfont={bf}]{caption}
-
-\usepackage[skip        =0pt, 
-size        =footnotesize,
-labelformat =simple]
-{subcaption}
-\fi
 
 \usepackage[
 skip            =0pt,
@@ -49,7 +41,7 @@ labelsep        =period
 \usepackage[
 skip        =0pt, 
 size        =footnotesize,
-textfont    =scriptsize,
+textfont    =footnotesize,
 justification=centering
 ]{subcaption}
 
@@ -108,14 +100,14 @@ justification=centering
 % I was getting Misplaced \noalign. \bottomrule on my laptop
 % but not on my desktop...
 % Comment out for older LaTeX versions
-\iffalse
+%\iffalse
 \ExplSyntaxOn
 \cs_new:Npn \expandableinput #1
 { \use:c { @@input } { \file_full_name:n {#1} } }
 \AddToHook{env/tabular/begin}
 { \cs_set_eq:NN \input \expandableinput }
 \ExplSyntaxOff
-\fi
+%\fi
 
 %========================================================
 % Meta
@@ -158,7 +150,9 @@ justification=centering
 \input{text/intro.tex}
 \newpage
 \input{text/data.tex}
-\newpage
+
+\clearpage
+\FloatBarrier
 \input{text/land_dist_bihar.tex}
 
 % -----------------------------------------------

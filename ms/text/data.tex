@@ -17,7 +17,11 @@ See \cref{fig:example_land_record} for an example copy of a land record and \cre
 		\includegraphics[width=\textwidth]{example_land_record_english.png}
 		\caption{Google translated}
 	\end{subfigure}
-	\caption{Example of Bihar land record. Screenshot of \href{http://land.bihar.gov.in/Ror/ViewRoRReportNew.aspx?SID=xnu01z5jvad5ozksexfvtgyx&LHID=3601010338000344&KNo=108}{originating source} on \url{http://land.bihar.gov.in}.}
+	\caption{
+		Example of Bihar land record.
+		Screenshot of \href{http://land.bihar.gov.in/Ror/ViewRoRReportNew.aspx?SID=xnu01z5jvad5ozksexfvtgyx&LHID=3601010338000344&KNo=108}{originating source} on \url{http://land.bihar.gov.in}.
+		Google translation of Hindi to English comes with errors.
+	}
 	\label{fig:example_land_record}
 \end{figure}
 
@@ -29,8 +33,8 @@ The original names are in Hindi. We use the Indicate package \citep{indicate} to
 The land records also come with caste of the owner, we work only on the top 200...
 
 
-\begin{table}[t]\footnotesize \setlength\tabcolsep{6 pt} \centering
-	\caption{Bihar land record fields}
+\begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
+	\caption{Fields available in Bihar land record. See \cref{fig:example_land_record} for an example of a land record and the information available.}
 	\label{tab:fields_land_records}
 	\begin{tabular}{@{\hspace{0\tabcolsep}}ll@{\hspace{0\tabcolsep}}}
 		\toprule
@@ -62,7 +66,7 @@ The land records also come with caste of the owner, we work only on the top 200.
 		14             &                                          \\
 		\bottomrule
 	\end{tabular}
-\end{table}
+\end{SCtable}
 
 
 
