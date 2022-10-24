@@ -1,6 +1,6 @@
 \section{Distribution of Land in Bihar}
 \subsection{Descriptive Facts on Land Distribution}
-
+\iffalse
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
@@ -17,6 +17,75 @@
 	\caption{Land plots per account holder. Number of land plots per account holder in the Bihar land registry. Both subfigures have the 99th percentile is trimmed for visual articulation. See \cref{tab:percentiles_plots_per_accountholder} for the percentile values, including the 99th percentile.}
 	\label{fig:number_plots_per_accountholder}
 \end{figure}
+\fi
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{number_plots_per_accountholder_ecdf.pdf}
+		\caption{Empirical CDF}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{plot_area_per_accountholder_ecdf.pdf}
+		\caption{Empirical CDF}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{landarea_per_plot_per_accountholder_ecdf.pdf}
+		\caption{Empirical CDF}
+	\end{subfigure}	
+	\vfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{number_plots_per_accountholder_histogram.pdf}
+		\caption{Histogram}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{plot_area_per_accountholder_histogram.pdf}
+		\caption{Histogram}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=8\baselineskip,width=\textwidth]{landarea_per_plot_per_accountholder_histogram.pdf}
+		\caption{Histogram}
+	\end{subfigure}
+	\caption{
+		Distribution of land in Bihar.
+		Column 1 is the number of land plots per account holder.
+		Column 2 is the total area of land plot(s) per account holder.
+		Column 3 is the area per land plot per account holder.
+		Row 1 shows the empirical cumulative distributions.
+		Row 2 shows the histograms.
+		Area units is in acres.
+		All subfigures have the 99th percentile trimmed for visual articulation. See \cref{tab:percentiles_landplots_per_accountholder}, \cref{tab:percentiles_area_per_accountholder}, and \cref{tab:percentiles_landarea_per_plot_per_accountholder} for the percentile values at the right tail, including the 99th percentile.}
+	\label{fig:land_distribution_bihar}
+\end{figure}
+
+To start, we expose the skewness of land ownership in Bihar in \cref{fig:land_distribution_bihar}.
+Land ownership is skewed by (i) the number of land plots owned , (ii) the area of land plots owned, and (iii) the area per land plot owned.
+Most land owners (the unique account registry number) are clustered on the left side of the distributions with a heavy tail on the right.
+
+Most land owners, more than 50 percent, own only one land plot. 
+More than 70 percent own only two land plots.
+The 90th percentile land owner in number of land plots owned, in comparison, own 7 land plots.
+The 99th percentile owns 32 land plots.
+
+A similar heavy right-skewed distribution can be seen the in area of land owned.
+The median land plot is only 0.34 acres, which is 0.001 square kilometers or 0.0005 square miles.
+The 90th percentile in land area owned, in comparison, is 8 times larger at 2.74 acres. 
+The 99th percentile has land plot that is 75 times the median land owner.
+
+When we account for area owned on a per plot basis, we get similar skews in distribution.
+The median area owned per plot is 0.18 acres, which is 0.0007 square kilometers or 0.0003 square miles.
+In comparison, the 90th percentile is 5 times larger at 0.93 acres, while the 99th percentile is 44 times larger at 7.99 acres.
+The percentiles are tabulated in \cref{tab:percentiles_landplots_per_accountholder}, \cref{tab:percentiles_area_per_accountholder}, and \cref{tab:percentiles_landarea_per_plot_per_accountholder}.
 
 
 \begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
@@ -25,11 +94,46 @@
 	\toprule
 	\multicolumn{1}{c}{\textbf{Percentiles}}&\multicolumn{1}{c}{\textbf{Plots}}\\
 	\midrule
-		\input{../tables/percentiles_plots_per_accountholder.tex}
+		\input{../tables/percentiles_landplots_per_accountholder.tex}
 	\bottomrule
 \end{tabular}
-\caption{Number of plots owned per account holder, by percentiles. See \cref{fig:number_plots_per_accountholder} for the distributions up to the 99th percentile (32 land plots per account holder).
+\caption{Number of plots owned per account holder, by percentiles. See \cref{fig:land_distribution_bihar} for the distributions up to the 99th percentile (31 land plots per account holder).
 }
-\label{tab:percentiles_plots_per_accountholder}
+\label{tab:percentiles_landplots_per_accountholder}
 \end{SCtable}
 
+
+\begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
+	\begin{tabular}{@{\hspace{0\tabcolsep}}c*{2}{D{.}{.}{-1}}@{\hspace{0\tabcolsep}}}
+		%\begin{tabular}{@{\hspace{0\tabcolsep}}rr@{\hspace{0\tabcolsep}}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Percentiles}}&\multicolumn{1}{c}{\textbf{Land plot area}}\\
+		\midrule
+		\input{../tables/percentiles_landarea_per_accountholder.tex}
+		\bottomrule
+	\end{tabular}
+	\caption{
+		Area of land plot per account holder, by percentiles. 
+		Units of area in acres.
+		See \cref{fig:land_distribution_bihar} for the distributions up to the 99th percentile.
+	}
+	\label{tab:percentiles_landarea_per_accountholder}
+\end{SCtable}
+
+
+\begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
+	\begin{tabular}{@{\hspace{0\tabcolsep}}c*{2}{D{.}{.}{-1}}@{\hspace{0\tabcolsep}}}
+		%\begin{tabular}{@{\hspace{0\tabcolsep}}rr@{\hspace{0\tabcolsep}}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Percentiles}}&\multicolumn{1}{c}{\textbf{Land plot area}}\\
+		\midrule
+		\input{../tables/percentiles_landarea_per_plot_per_accountholder.tex}
+		\bottomrule
+	\end{tabular}
+	\caption{
+		Area of land plot per plot per account holder, by percentiles. 
+		Units of area in acres.
+		See \cref{fig:land_distribution_bihar} for the distributions up to the 99th percentile.
+	}
+	\label{tab:percentiles_landarea_per_plot_per_accountholder}
+\end{SCtable}
