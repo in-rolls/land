@@ -150,15 +150,3 @@ def conbarplot(
 def save_mpl_fig(savepath):
     plt.savefig(f"{savepath}.pdf", dpi=None, bbox_inches="tight", pad_inches=0)
     plt.savefig(f"{savepath}.png", dpi=120, bbox_inches="tight", pad_inches=0)
-
-
-def pandas_to_tex(df, texfile):
-    if texfile.split(".")[-1] != ".tex":
-        texfile += ".tex"
-        
-    tex_table = df.to_latex(index=False, header=False)
-    tex_table_fragment = "\n".join(tex_table.split("\n")[2:-3])
-    
-    with open(texfile, "w") as tf:
-        tf.write(tex_table_fragment)
-    return None
