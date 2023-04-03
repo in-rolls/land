@@ -1,4 +1,5 @@
-pandas
+pandas==2.0.0rc0
+pyarrow
 pyjanitor
 matplotlib
 seaborn
@@ -6,4 +7,8 @@ runpynb
 pranaam
 indicate
 naampy
-outkast
+forestplot
+jupyter
+notebook==6.4.8
+jupyter_contrib_nbextensions
+jupyter_nbextensions_configurator
