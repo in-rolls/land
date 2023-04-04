@@ -6,6 +6,14 @@ Using the Bihar land records data---plot-level land records (N= 41.87 million pl
 
 In particular, we investigate the distribution of a) the number of plots and b) total land area by `account number`. We also check how the ownership of land is distributed across castes and religion and using [naampy](https://github.com/appeler/naampy), we infer what proportion of land is registered to women. We compare these to the [base distribution](data/guesstimates.md).
 
+## Manuscript
+
+* [manuscript](ms/)
+
+## Data
+
+* [data](data/)
+
 ### Scripts
 
 1. [Wrangle Data](scripts/01_wrangle_data.ipynb)
