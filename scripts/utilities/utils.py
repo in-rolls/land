@@ -18,11 +18,11 @@ def get_fulldata(directory="../data/bihar_land_records_csv/", **pandas_kwargs):
     return final_frame
 
 
-def pandas_to_tex(df, texfile, index=False):
+def pandas_to_tex(df, texfile, index=False, **kwargs):
     if texfile.split(".")[-1] != ".tex":
         texfile += ".tex"
 
-    tex_table = df.to_latex(index=index, header=False)
+    tex_table = df.to_latex(index=index, header=False, **kwargs)
     tex_table_fragment = "\n".join(tex_table.split("\n")[3:-3])
     # Remove the last \\ in the tex fragment to prevent the annoying
     # "Misplaced \noalign" LaTeX error when I use \bottomrule
