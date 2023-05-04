@@ -1,0 +1,14 @@
+indicate
+geopandas
+pandas
+pyjanitor
+matplotlib
+seaborn
+runpynb
+forestplot
+jupyter
+notebook==6.4.8
+jupyter_contrib_nbextensions
+jupyter_nbextensions_configurator
+tqdm
+watermark
