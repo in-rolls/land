@@ -1,8 +1,5 @@
 \section{Bihar land records}
-The foundational data we use for this study is the Bihar land records. 
-In total, we have around 41.87 million land records and 12.12 million individuals/accounts.
-Each record is for a plot of land enumerating details such as the land owner's registered account number, name of the owner (ryot or raiyat), name of the owner's father, residence (is this village?), caste, amongst others. 
-See \cref{fig:example_land_record} for an example copy of a land record and \cref{tab:fields_land_records} for the fields included in each record. 
+The foundational data we use for this study is the Bihar land records. In total, we have around 41.87 million land records and 12.12 million individuals/accounts. Each record is for a plot of land enumerating details such as the land owner's registered account number, name of the owner (ryot or raiyat), name of the owner's father, residence (is this village?), caste, amongst others. See \cref{fig:example_land_record} for an example copy of a land record and \cref{tab:fields_land_records} for the fields included in each record. 
 
 \begin{figure}
 	\centering
@@ -25,12 +22,9 @@ See \cref{fig:example_land_record} for an example copy of a land record and \cre
 	\label{fig:example_land_record}
 \end{figure}
 
-To compare land area for each land plot, we use the fields 6--8 (\cref{tab:fields_land_records}) for acre, decimal, and hectare as land area in acres $= Acre + \frac{Decimal}{100} + Hectare \times 2.4711$.
-Three account holders across fourteen land records have negative land plot areas and we drop these for analyses relating to land plot areas.
+To compare land area for each land plot, we use the fields 6--8 (\cref{tab:fields_land_records}) for acre, decimal, and hectare as land area in acres $= Acre + \frac{Decimal}{100} + Hectare \times 2.4711$. Three account holders across fourteen land records have negative land plot areas and we drop these for analyses relating to land plot areas.
 
-The original names are in Hindi. We use the Indicate package \citep{indicate} to transliterate the Hindi scripts to English.
-
-The land records also come with caste of the owner, we work only on the top 200...
+The original names are in Hindi. We use the Indicate package \citep{indicate} to transliterate the Hindi scripts to English. The land records also come with caste of the owner, we work only on the top 200.
 
 
 \begin{SCtable}[\sidecaptionrelwidth][t] \setlength{\tabcolsep}{30pt}  \scriptsize \centering \setlength\extrarowheight{-5pt}
