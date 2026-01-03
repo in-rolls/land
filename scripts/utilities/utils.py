@@ -7,6 +7,8 @@ import gc
 def get_fulldata(directory="../data/bihar_land_records_csv/", **pandas_kwargs):
     final_df = []
     for filename in os.listdir(directory):
+        if not filename.endswith('.csv'):
+            continue
         f = os.path.join(directory, filename)
         lr_file = pd.read_csv(f, **pandas_kwargs)
         final_df.append(lr_file)
@@ -16,7 +18,6 @@ def get_fulldata(directory="../data/bihar_land_records_csv/", **pandas_kwargs):
     gc.collect()
 
     return final_frame
-
 
 def pandas_to_tex(df, texfile, index=False, **kwargs):
     if texfile.split(".")[-1] != ".tex":
