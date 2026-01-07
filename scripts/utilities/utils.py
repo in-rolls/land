@@ -19,6 +19,21 @@ def get_fulldata(directory="../data/bihar_land_records_csv/", **pandas_kwargs):
 
     return final_frame
 
+def process_land_area(df):
+    """
+    Process land area data:
+    - Filter valid decimals (0-99)
+    - Calculate total area in acres
+    - Filter positive areas only
+    """
+    return (
+        df
+        .rename_columns(new_column_names={"6": "acres", "7": "decimals", "8": "hectare"})
+        .query("decimals >= 0 & decimals <= 99")
+        .assign(tt_area_acre=lambda df_: df_["acres"] + df_["decimals"] / 100)
+        .query("tt_area_acre > 0")
+    )
+
 def pandas_to_tex(df, texfile, index=False, **kwargs):
     if texfile.split(".")[-1] != ".tex":
         texfile += ".tex"
