@@ -1,4 +1,3 @@
-# transliterate_names.py
 import pandas as pd
 from indicate import transliterate
 from tqdm import tqdm
@@ -26,4 +25,4 @@ tqdm.pandas()
 df['eng_name'] = df['name'].progress_apply(hin_to_eng)
 
 print("Saving results...")
-df.to_parquet("temp_hindi_names_religion_translated.parquet", index=False)
+df.to_parquet("../data/hindi_names_religion_translated.parquet", index=False)
