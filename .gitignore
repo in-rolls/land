@@ -489,3 +489,5 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/latex,jupyternotebooks,python
 ms/.DS_Store
 .DS_Store
+data/account.csv.gz
+/data
