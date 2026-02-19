@@ -22,6 +22,9 @@ Do NOT deduplicate. Do NOT skip items. If uncertain, output "cannot decide" and 
 
 Return ONLY valid JSON. No commentary.
 
+# DATA QUALITY
+Input names may contain noise from OCR and PDF parsing: extra spaces (e.g., "र ा म" instead of "राम"), missing or broken matras, stray punctuation, inconsistent zero-width characters, and irregular transliteration. Normalize mentally before classifying—do not let formatting artifacts change your annotation.
+
 # OUTPUT SCHEMA
 Return a single JSON object with one key "rows".
 Each element of "rows" is a 10-element array in this exact order:
@@ -51,10 +54,41 @@ Where:
 Example output shape:
 {"rows":[[0,"human",0.99,"not_applicable",1.0,"woman",0.98,"hindu",0.94,0.04], ...]}
 
+# GENDER
+
+**For non-human entities:** gender = "cannot decide", prop_women = null
+
+**For humans, infer gender from the name itself.** Most names in Bihar land records are identifiably male or female based on common Bihari naming conventions. This is your primary signal. Use your knowledge of common Hindi/Bihari/Maithili/Bhojpuri/Magahi names to classify.
+
+Honorifics and relationship markers, when present, provide strong confirmation but most entries will lack them:
+- Woman: श्रीमती, श्रीमति, सुश्री, कुमारी, बीबी, बेगम, खातुन, खातून, मुसम्मत, मुस्समत, W/O, D/O, पत्नी, पुत्री
+- Man: श्री (alone, without मती), Mr., S/O, पुत्र, बेटा
+
+Set prop_women to your probability estimate that this person is a woman. Use "cannot decide" only when genuinely uncertain (prop_women ≈ 0.5).
+
+# RELIGION
+
+Applies to BOTH humans and non-humans (organizations can have religious affiliation).
+
+**For humans, infer religion from the name itself.** Bihar has distinct Hindu and Muslim naming traditions, and most names are classifiable from the name alone. This is your primary signal. Use your knowledge of common names, surnames, and naming patterns across religious communities in Bihar.
+
+Honorifics and markers, when present, provide strong confirmation but most entries will lack them:
+- Hindu: पंडित, ठाकुर, मंदिर, देवस्थान, आश्रम
+- Muslim: मो०, मोहम्मद, शेख, मौलाना, हाजी, हाफिज, मस्जिद, वक्फ, दरगाह, मदरसा
+- Other: गुरुद्वारा (Sikh), चर्च/गिरजाघर (Christian)
+
+**Proportions:**
+- prop_hindu + prop_muslim ≤ 1.0 (remainder is implicit other/unknown)
+- If clearly Hindu: prop_hindu ≈ 0.95, prop_muslim ≈ 0.03
+- If clearly Muslim: prop_muslim ≈ 0.95, prop_hindu ≈ 0.03
+- If name is shared across communities (e.g., राजू, राम could be either in some regions): spread probability accordingly, e.g., prop_hindu ≈ 0.70, prop_muslim ≈ 0.20
+- If genuinely ambiguous: prop_hindu ≈ 0.50, prop_muslim ≈ 0.40, religion = "cannot decide"
+
 # ENTITY TYPE
 
 ## Human indicators
-- Personal names with honorifics: श्री, श्रीमती, मो०, कुमारी
+- Personal names (the vast majority of entries)
+- Honorifics: श्री, श्रीमती, मो०, कुमारी
 - Alias markers: उर्फ
 - Deceased markers: स्व०, स्व0, स्व.
 - Relationship patterns: S/O, W/O, D/O, पुत्र, पत्नी, पुत्री
@@ -89,42 +123,6 @@ Land categories: गैरमजरूआ, गैरमजरूआ आम, ग�
 ## Organization type
 - If entity_type == "human": organization_type = "not_applicable", organization_confidence = 1.0
 - If entity_type == "non-human": classify using categories above
-
-# GENDER
-
-**For non-human entities:** gender = "cannot decide", prop_women = null
-
-**For humans, woman indicators:**
-- Honorifics: श्रीमती, श्रीमति, सुश्री, कुमारी, बीबी, बेगम, खातुन, खातून, मुसम्मत, मुस्समत
-- Relationship: W/O, D/O, पत्नी, पुत्री
-
-**For humans, man indicators:**
-- Honorifics: श्री (alone, without मती), Mr.
-- Relationship: S/O, पुत्र, बेटा
-
-**Otherwise:** Infer from common Bihari names. Set prop_women to your probability estimate that this person is a woman. The gender label should be your best guess (or "cannot decide" if genuinely uncertain, e.g., prop_women ≈ 0.5).
-
-# RELIGION
-
-Applies to BOTH humans and non-humans (organizations can have religious affiliation).
-
-**Hindu indicators:**
-- Honorifics: पंडित, ठाकुर
-- Institutional: मंदिर, देवस्थान, आश्रम
-- Common Hindu names/surnames of Bihar
-
-**Muslim indicators:**
-- Honorifics: मौलाना, हाजी, हाफिज
-- Name patterns: मो०, मोहम्मद, शेख, अंसारी
-- Institutional: मस्जिद, वक्फ, दरगाह, मदरसा
-- Common Muslim names of Bihar
-
-**Other religion:** Sikh (गुरुद्वारा), Christian (चर्च), Jain, Buddhist markers
-
-**Proportions:**
-- prop_hindu + prop_muslim ≤ 1.0 (remainder is implicit other/unknown)
-- If highly certain Hindu: prop_hindu ≈ 0.95, prop_muslim ≈ 0.03
-- If ambiguous name shared across communities: p
 """
 
 
