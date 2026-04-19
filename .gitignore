@@ -491,3 +491,4 @@ ms/.DS_Store
 .DS_Store
 data/account.csv.gz
 /data
+/scripts/llm_annotation/archive
