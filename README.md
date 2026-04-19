@@ -35,15 +35,16 @@ All scripts are in [scripts/](scripts/).
 
 ### Distribution Analysis
 
+
 | Script | Purpose |
 |--------|---------|
-| `60_land_distribution_bihar_religion_coded.ipynb` | Distribution by religion |
-| `61_land_distribution_bihar_gender.ipynb` | Distribution by gender |
-| `61_land_distribution_bihar_religion_pranaam.ipynb` | Distribution by religion (pranaam) |
-| `62_land_distribution_bihar_caste.ipynb` | Distribution by caste |
-| `caste_outkast_dist.ipynb` | Caste distribution via outkast |
-| `muslims_dist.ipynb` | Muslim population land distribution |
-| `benchmark-ratio-viz.ipynb` | Benchmark comparisons |
+| `60_land_distribution_bihar_religion_coded.ipynb` | By religion (jati-coded) |
+| `61_land_distribution_bihar_gender.ipynb` | By gender (naampy) |
+| `62_land_distribution_bihar_caste.ipynb` | By caste (5-category) |
+| `70_land_distribution_bihar_religion_pranaam.ipynb` | By religion (pranaam) |
+| `80_land_distribution_bihar_gender_llm.ipynb` | By gender (LLM) |
+| `81_land_distribution_bihar_religion_llm.ipynb` | By religion (LLM) |
+| `benchmark-ratio-viz.ipynb` | Benchmark ratio figure |
 
 ### Geographic & Admin
 
