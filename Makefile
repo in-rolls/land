@@ -102,19 +102,28 @@ build:
 # Installs packages from requirements.txt
 # ============================================================================
 .PHONY: setup
+VENVPATH ?= venv_land
+ifeq ($(OS),Windows_NT)
+	VENVPATH :=  c:/users/admin/$(VENVPATH)
+	ACTIVATE_PATH := $(VENVPATH)/Scripts/activate
+else
+	ACTIVATE_PATH := $(VENVPATH)/bin/activate
+endif
+REQUIREMENTS := ./requirements.txt
 setup: # Set up venv	
-setup: requirements.txt
+setup: $(REQUIREMENTS)
 	@echo "==> $@"
 	@echo "==> Creating and initializing virtual environment..."
-	rm -rf venv_land
-	python -m venv venv_land
-	. venv_land/bin/activate && \
+	rm -rf $(VENVPATH)
+	python -m venv $(VENVPATH)
+	. $(ACTIVATE_PATH) && \
 		pip install --upgrade pip && \
 		which pip && \
 		pip list && \
 		echo "==> Installing requirements" && \
 		pip install -r $< && \
 		jupyter contrib nbextensions install --sys-prefix --skip-running-check && \
+		python -m ipykernel install --user --name=$(VENVPATH) --display-name "Python ($(VENVPATH))" && \
 		echo "==> Packages available:" && \
 		which pip && \
 		pip list && \
@@ -122,6 +131,20 @@ setup: requirements.txt
 		deactivate
 	@echo "==> Setup complete."
 
+
+# ============================================================================
+# Open Jupyter notebook in the venv
+# ============================================================================
+.PHONY: jn
+jn: # Launch jupyter notebook in venv
+	@echo "==> $@"
+	if [ -f $(VENVPATH)/Scripts/activate ]; then \
+		. $(VENVPATH)/Scripts/activate && jupyter notebook; \
+	elif [ -f $(VENVPATH)/bin/activate ]; then \
+		. $(VENVPATH)/bin/activate && jupyter notebook; \
+	else \
+		@echo "No venv found"; \
+	fi
 
 # ============================================================================
 # Additional utilities
